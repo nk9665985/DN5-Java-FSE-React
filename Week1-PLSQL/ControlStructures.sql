@@ -1,8 +1,4 @@
-USE cognizant_dn5;
-
 -- Scenario 1
--- Apply 1% discount to customers above 60
-
 UPDATE Loans l
 JOIN Customers c
 ON l.CustomerID = c.CustomerID
@@ -11,22 +7,28 @@ WHERE c.Age > 60;
 
 SELECT * FROM Loans;
 
--- Scenario 2
--- Mark VIP customers
 
+-- Scenario 2
 UPDATE Customers
 SET IsVIP = TRUE
 WHERE Balance > 10000;
 
 SELECT * FROM Customers;
 
--- Scenario 3
--- Customers whose loans are due within 30 days
 
+-- Scenario 3
 SELECT
-    c.Name,
+    c.Name AS CustomerName,
     l.LoanID,
-    l.DueDate
+    l.DueDate,
+    CONCAT(
+        'Reminder: Dear ',
+        c.Name,
+        ', your loan ',
+        l.LoanID,
+        ' is due on ',
+        l.DueDate
+    ) AS Message
 FROM Customers c
 JOIN Loans l
 ON c.CustomerID = l.CustomerID
