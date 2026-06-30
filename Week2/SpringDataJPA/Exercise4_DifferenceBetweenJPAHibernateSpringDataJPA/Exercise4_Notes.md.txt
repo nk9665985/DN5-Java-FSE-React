@@ -1,0 +1,107 @@
+# Exercise 4: Difference between JPA, Hibernate and Spring Data JPA
+
+## Objective
+Understand the difference between JPA, Hibernate and Spring Data JPA.
+
+---
+
+## Java Persistence API (JPA)
+
+- JPA stands for Java Persistence API.
+- It is a specification (JSR 338) for Object Relational Mapping (ORM).
+- It defines rules for mapping Java objects to database tables.
+- JPA does not provide any implementation.
+- Hibernate is one of the implementations of JPA.
+
+---
+
+## Hibernate
+
+- Hibernate is an ORM framework.
+- It is an implementation of JPA.
+- Hibernate maps Java objects to database tables.
+- It manages Sessions, Transactions and generates SQL queries automatically.
+
+Example:
+
+```java
+Session session = factory.openSession();
+Transaction tx = session.beginTransaction();
+
+session.save(employee);
+
+tx.commit();
+session.close();
+```
+
+---
+
+## Spring Data JPA
+
+- Spring Data JPA is built on top of JPA.
+- It reduces boilerplate code.
+- It provides built-in CRUD operations through JpaRepository.
+- It manages transactions using @Transactional.
+
+Example Repository:
+
+```java
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+
+}
+```
+
+Example Service:
+
+```java
+@Autowired
+private EmployeeRepository employeeRepository;
+
+@Transactional
+public void addEmployee(Employee employee) {
+    employeeRepository.save(employee);
+}
+```
+
+---
+
+## Difference Table
+
+| Feature | JPA | Hibernate | Spring Data JPA |
+|---------|-----|-----------|-----------------|
+| Type | Specification | ORM Framework | Spring Module |
+| Implementation | No | Yes | No |
+| ORM Support | Defines ORM Rules | Implements ORM | Uses Hibernate |
+| CRUD Operations | Manual | Manual | Automatic |
+| Boilerplate Code | High | Medium | Very Low |
+| Transaction Management | Manual | Manual | Automatic |
+| SQL Generation | No | Yes | Uses Hibernate |
+
+---
+
+## Architecture
+
+```
+Application
+     │
+     ▼
+Spring Data JPA
+     │
+     ▼
+JPA Specification
+     │
+     ▼
+Hibernate
+     │
+     ▼
+MySQL Database
+```
+
+---
+
+## Conclusion
+
+- JPA is a specification.
+- Hibernate is the implementation of JPA.
+- Spring Data JPA simplifies Hibernate by reducing boilerplate code and providing built-in CRUD operations.
