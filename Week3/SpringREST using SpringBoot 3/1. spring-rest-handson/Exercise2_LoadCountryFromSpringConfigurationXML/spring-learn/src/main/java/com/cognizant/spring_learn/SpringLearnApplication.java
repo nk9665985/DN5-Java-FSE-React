@@ -1,8 +1,5 @@
 package com.cognizant.spring_learn;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,25 +15,24 @@ public class SpringLearnApplication {
 	private static final Logger LOGGER =
 			LoggerFactory.getLogger(SpringLearnApplication.class);
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 
 		SpringApplication.run(SpringLearnApplication.class, args);
 
 		LOGGER.info("Inside main");
 
-		displayDate();
+		displayCountry();
 	}
 
-	private static void displayDate() throws Exception {
+	private static void displayCountry() {
 
 		ApplicationContext context =
-				new ClassPathXmlApplicationContext("date-format.xml");
+				new ClassPathXmlApplicationContext("country.xml");
 
-		SimpleDateFormat format =
-				context.getBean("dateFormat", SimpleDateFormat.class);
+		Country country =
+				context.getBean("country", Country.class);
 
-		Date date = format.parse("31/12/2018");
+		LOGGER.debug("Country : {}", country);
 
-		System.out.println(date);
 	}
 }
