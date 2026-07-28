@@ -1,0 +1,10 @@
+Welcome to Git.
+
+This file was created during Git Exercise 1.
+
+Learning Git commands:
+- git init
+- git status
+- git add
+- git commit
+- git push

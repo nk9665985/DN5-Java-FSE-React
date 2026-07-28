@@ -1,0 +1,3 @@
+Welcome to Git Ignore Exercise.
+
+This exercise demonstrates how to ignore unwanted files and folders using the .gitignore file.

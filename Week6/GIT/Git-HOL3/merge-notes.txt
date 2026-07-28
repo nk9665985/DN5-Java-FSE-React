@@ -1,0 +1,3 @@
+This file contains notes related to the merge operation.
+
+After merging, all changes from GitNewBranch become available in the main branch.
